@@ -1,5 +1,6 @@
 /*
-In the 20×20 grid below, four numbers along a diagonal line have been marked in red.
+In the 20×20 grid below, four numbers along a diagonal line have been marked in
+red.
 
 08 02 22 97 38 15 00 40 00 75 04 05 07 78 52 12 50 77 91 08
 49 49 99 40 17 81 18 57 60 87 17 40 98 43 69 48 04 56 62 00
@@ -24,8 +25,11 @@ In the 20×20 grid below, four numbers along a diagonal line have been marked in
 
 The product of these numbers is 26 × 63 × 78 × 14 = 1788696.
 
-What is the greatest product of four adjacent numbers in the same direction (up, down, left, right, or diagonally) in the 20×20 grid?
+What is the greatest product of four adjacent numbers in the same direction
+(up, down, left, right, or diagonally) in the 20×20 grid?
 */
+
+console.time();
 
 var data = [
   [08,02,22,97,38,15,00,40,00,75,04,05,07,78,52,12,50,77,91,08],
@@ -51,7 +55,7 @@ var data = [
 ];
 
 var largest = 0;
-//get largest product horizontally
+// get largest product horizontally
 for (let row = 0; row < data.length; row++) {
   for (let col = 0; col < data[col].length-4; col++) {
     var prod = data[row].slice(col, col + 4).reduce((acc, val) => acc * val);
@@ -59,22 +63,23 @@ for (let row = 0; row < data.length; row++) {
   }
 }
 
-//get largest product vertically
+// get largest product vertically
 for (let row = 0; row < data.length - 4; row++) {
   for (let col = 0; col < data[row].length; col++) {
     var prod = data[row][col] * data[row + 1][col] * data[row + 2][col] * data[row+3][col];
     if (prod > largest) largest = prod;
   }
-  //get the largest product top left to right diagonal
+  // get the largest product top left to right diagonal
   for (let col = 0; col < data[row].length - 4; col++) {
     var prod = data[row][col] * data[row+1][col+1] * data[row+2][col+2] * data[row+3][col+3];
     if (prod > largest) largest = prod;
   }
-  //get the largest product top right to left diagnonal
+  // get the largest product top right to left diagnonal
   for (let col = 3; col < data[row].length; col++) {
     var prod = data[row][col] * data[row+1][col-1] * data[row+2][col-2] * data[row+3][col-3];
     if (prod > largest) largest = prod;
   }
 }
 
-console.log(largest);
+console.log(largest); // 70600674 1.8ms
+console.timeEnd();
