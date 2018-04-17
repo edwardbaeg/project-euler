@@ -21,7 +21,7 @@ function factorialDigitSum(n) {
     }
     while (carry > 0) {
       num.unshift(carry % 10);
-      carry = Math.floor(carry/10);
+      carry = Math.floor(carry / 10);
     }
   }
 
